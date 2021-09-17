@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Manipulación del DOM con javascript</title>
+    </head>
+    <body>
+        <h1>Esta lista va a ser modificada dinámicamente:</h1>
+        <h2>Esta lista tiene <span id="cantidad">2</span> elementos</h2>
+        <ol id="lista">
+            <li class="elemento">Este es el primer elemento</li>                          
+            <li class="elemento">Esta es el segundo elemento</li>
+        </ol>
+        <hr>
+        <label for="agregar">Agregar a la lista:</label>
+        <input type="text" id="agregar" name="agregar">
+        <button type="button" id="btn-agregar">Agregar</button>
+        <br>
+        <label for="eliminar">Eliminar de la lista el elemento número:</label>
+        <input type="number" name="eliminar" id="eliminar">
+        <button type="button" id="btn-eliminar">Eliminar</button>
+<script>
+document.querySelector('#btn-agregar').addEventListener('click',agregar);
+
+function agregar()
+{
+    var lista = document.querySelector('#lista');
+    var nuevoElemento = document.createElement('li');
+    nuevoElemento.classList.add('elemento');
+    nuevoElemento.innerHTML = document.querySelector('#agregar').value;
+    lista.appendChild(nuevoElemento);
+    verificarCantidad();
+
+    document.querySelector('#agregar').value = '';
+}
+
+function verificarCantidad()
+{
+    var cantidad = document.querySelectorAll('#lista .elemento').length;
+    document.querySelector('#cantidad').innerHTML = cantidad;
+}
+</script>
+    </body>
+</html>
